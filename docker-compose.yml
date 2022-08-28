@@ -1,13 +1,13 @@
 version: '2.1'
 services:
   platform-configuration:
-    image: icyfenix/bookstore-springcloud:platform-configuration
+    image: kicey/bs-platform-config:origin
     restart: always
     ports:
       - 8888:8888
 
   platform-registry:
-    image: icyfenix/bookstore-springcloud:platform-registry
+    image: kicey/bs-platform-registry:origin
     environment:
       CONFIG_HOST: platform-configuration
     restart: always
@@ -18,7 +18,7 @@ services:
       - 8761:8761
 
   platform-gateway:
-    image: icyfenix/bookstore-springcloud:platform-gateway
+    image: kicey/bs-platform-gateway:origin
     depends_on:
       platform-configuration:
         condition: service_healthy
@@ -32,7 +32,7 @@ services:
       - 8080:8080
 
   domain-security:
-    image: icyfenix/bookstore-springcloud:domain-security
+    image: kicey/bs-security:origin
     depends_on:
       platform-configuration:
         condition: service_healthy
@@ -46,7 +46,7 @@ services:
       - 8301:8301
 
   domain-account:
-    image: icyfenix/bookstore-springcloud:domain-account
+    image: kicey/bs-account:origin
     depends_on:
       platform-configuration:
         condition: service_healthy
@@ -61,7 +61,7 @@ services:
       - 8401:8401
 
   domain-warehouse:
-    image: icyfenix/bookstore-springcloud:domain-warehouse
+    image: kicey/bs-warehouse:origin
     depends_on:
       platform-configuration:
         condition: service_healthy
@@ -76,7 +76,7 @@ services:
       - 8501:8501
 
   domain-payment:
-    image: icyfenix/bookstore-springcloud:domain-payment
+    image: kicey/bs-payment:origin
     depends_on:
       platform-configuration:
         condition: service_healthy

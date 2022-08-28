@@ -1,6 +1,6 @@
 FROM openjdk:12-alpine
 
-MAINTAINER icyfenix
+MAINTAINER kicey
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS="" \
