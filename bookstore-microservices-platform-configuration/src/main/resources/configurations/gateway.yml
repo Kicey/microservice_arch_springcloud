@@ -3,60 +3,48 @@ eureka:
     serviceUrl:
       defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8761}/eureka/
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 20000
+spring:
+  webflux:
+    static-path-pattern: /resources/**
+  cloud:
+    gateway:
+      locators:
+        enabled: true
+      routes:
+        - id: account
+          predicates:
+            - Path=/restful/accounts/**
+          uri: lb://account
 
-ribbon:
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
+        - id: payment
+          predicates:
+            - Path=/restful/pay/**
+          uri: lb://payment
 
-zuul:
-  ignoredServices: '*'
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+        - id: settlement
+          predicates:
+            - Path=/restful/settlements/**
+          uri: lb://payment
 
-  routes:
-    account:
-      path: /restful/accounts/**
-      serviceId: account
-      stripPrefix: false
-      sensitiveHeaders: "*"
+        - id: advertisements
+          predicates:
+            - Path=/restful/advertisements/**
+          uri: lb://warehouse
 
-    payment:
-      path: /restful/pay/**
-      serviceId: payment
-      stripPrefix: false
-      sensitiveHeaders: "*"
+        - id: products
+          predicates:
+            - Path=/restful/products/**
+          uri: lb://warehouse
 
-    settlement:
-      path: /restful/settlements/**
-      serviceId: payment
-      stripPrefix: false
-      sensitiveHeaders: "*"
+        - id: security
+          predicates:
+            - Path=/oauth/**
+          uri: lb://security
 
-    advertisements:
-      path: /restful/advertisements/**
-      serviceId: warehouse
-      stripPrefix: false
-      sensitiveHeaders: "*"
-
-    products:
-      path: /restful/products/**
-      serviceId: warehouse
-      stripPrefix: false
-      sensitiveHeaders: "*"
-
-    security:
-      path: /oauth/**
-      serviceId: security
-      stripPrefix: false
-      sensitiveHeaders: "*"
+        - id: static-resources
+          predicates:
+            - Path=/**
+          uri: forward:/
 
 server:
   port: ${PORT:8080}
