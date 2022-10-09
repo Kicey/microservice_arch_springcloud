@@ -1,0 +1,892 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "微服务电商",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "account"
+    },
+    {
+      "name": "pay"
+    },
+    {
+      "name": "warehouse"
+    }
+  ],
+  "paths": {
+    "/restful/accounts/{username}": {
+      "get": {
+        "summary": "getOne",
+        "x-apifox-folder": "account",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "account"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42854043-run"
+      }
+    },
+    "/restful/accounts": {
+      "post": {
+        "summary": "create",
+        "x-apifox-folder": "account",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "account"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42855069-run"
+      },
+      "put": {
+        "summary": "update",
+        "x-apifox-folder": "account",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "account"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42855100-run"
+      }
+    },
+    "/restful/pay/{payId}": {
+      "patch": {
+        "summary": "patchOrder",
+        "x-apifox-folder": "pay",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pay"
+        ],
+        "parameters": [
+          {
+            "name": "payId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42855274-run"
+      }
+    },
+    "/restful/pay/modify/{payId}": {
+      "get": {
+        "summary": "aliasForPatchOrder",
+        "x-apifox-folder": "pay",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pay"
+        ],
+        "parameters": [
+          {
+            "name": "payId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accoutId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42856263-run"
+      }
+    },
+    "/restful/settlements": {
+      "post": {
+        "summary": "settle",
+        "x-apifox-folder": "pay",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pay"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Settlement"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42857590-run"
+      }
+    },
+    "/restful/advertisements": {
+      "get": {
+        "summary": "getAllAdvertisements",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Advertisement"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42857711-run"
+      }
+    },
+    "/restful/products": {
+      "get": {
+        "summary": "getAll",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858370-run"
+      },
+      "put": {
+        "summary": "putOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858510-run"
+      },
+      "post": {
+        "summary": "createOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858579-run"
+      }
+    },
+    "/restful/products/{id}": {
+      "get": {
+        "summary": "getOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858391-run"
+      },
+      "delete": {
+        "summary": "deleteOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858611-run"
+      }
+    },
+    "/restful/products/stockpile/{productId}": {
+      "patch": {
+        "summary": "updateOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858663-run"
+      },
+      "get": {
+        "summary": "getOne",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stockpile"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858937-run"
+      }
+    },
+    "/restful/products//stockpile/delivered/{productId}": {
+      "patch": {
+        "summary": "updateOneStatus",
+        "x-apifox-folder": "warehouse",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "warehouse"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DeliveredStatus",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1685759/apis/api-42858914-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Stockpile": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "frozen": {
+            "type": "integer"
+          }
+        },
+        "x-apifox-orders": [
+          "amount",
+          "frozen"
+        ],
+        "required": [
+          "amount",
+          "frozen"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "warehouse"
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "rate": {
+            "description": "评分",
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cover": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "specifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Specification"
+            }
+          }
+        },
+        "x-apifox-orders": [
+          "title",
+          "price",
+          "rate",
+          "description",
+          "cover",
+          "detail",
+          "specifications"
+        ],
+        "required": [
+          "title",
+          "price",
+          "rate",
+          "description",
+          "cover",
+          "detail",
+          "specifications"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "warehouse"
+      },
+      "Specification": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "integer"
+          }
+        },
+        "x-apifox-orders": [
+          "item",
+          "value",
+          "productId"
+        ],
+        "required": [
+          "item",
+          "value",
+          "productId"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "warehouse"
+      },
+      "Advertisement": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "image",
+          "productId"
+        ],
+        "required": [
+          "image",
+          "productId"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "warehouse"
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "createTime": {
+            "type": "string"
+          },
+          "payId": {
+            "type": "string"
+          },
+          "totalPrice": {
+            "type": "number"
+          },
+          "expires": {
+            "type": "integer"
+          },
+          "paymentLink": {
+            "type": "string"
+          },
+          "payState": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "createTime",
+          "payId",
+          "totalPrice",
+          "expires",
+          "paymentLink",
+          "payState"
+        ],
+        "required": [
+          "createTime",
+          "payId",
+          "totalPrice",
+          "expires",
+          "paymentLink",
+          "payState"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "pay"
+      },
+      "Settlement": {
+        "type": "object",
+        "properties": {
+          "purchase": {
+            "$ref": "#/components/schemas/Purchase"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
+          }
+        },
+        "x-apifox-orders": [
+          "purchase",
+          "items"
+        ],
+        "required": [
+          "purchase",
+          "items"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "pay"
+      },
+      "Purchase": {
+        "type": "object",
+        "properties": {
+          "pay": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "pay",
+          "name",
+          "telephone",
+          "location"
+        ],
+        "required": [
+          "pay",
+          "name",
+          "telephone",
+          "location"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "pay"
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "productId": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "amount",
+          "productId"
+        ],
+        "required": [
+          "amount",
+          "productId"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "pay"
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "status",
+          "message"
+        ],
+        "required": [
+          "status",
+          "message"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "common"
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "username",
+          "password",
+          "name",
+          "avatar",
+          "telephone",
+          "email",
+          "location"
+        ],
+        "required": [
+          "username",
+          "password",
+          "name",
+          "avatar",
+          "telephone",
+          "email",
+          "location"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "account"
+      }
+    }
+  }
+}
