@@ -27,9 +27,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * 基于用户名、密码的身份认证器
@@ -39,7 +39,7 @@ import javax.inject.Named;
  * @author icyfenix@gmail.com
  * @date 2020/3/7 21:45
  */
-@Named
+@Component
 public class UsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
     @Inject

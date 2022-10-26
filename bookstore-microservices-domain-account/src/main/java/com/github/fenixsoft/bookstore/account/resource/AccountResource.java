@@ -29,6 +29,10 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -44,7 +48,7 @@ import javax.ws.rs.core.Response;
  * @author icyfenix@gmail.com
  * @date 2020/3/6 20:52
  **/
-@Path("/accounts")
+@RequestMapping("/accounts")
 @Component
 @CacheConfig(cacheNames = "resource.account")
 @Produces(MediaType.APPLICATION_JSON)
@@ -57,8 +61,7 @@ public class AccountResource {
     /**
      * 根据用户名称获取用户详情
      */
-    @GET
-    @Path("/{username}")
+    @GetMapping("/{username}")
     @Cacheable(key = "#username")
     @PreAuthorize("#oauth2.hasAnyScope('SERVICE','BROWSER')")
     public Account getUser(@PathParam("username") String username) {
@@ -68,7 +71,7 @@ public class AccountResource {
     /**
      * 创建新的用户
      */
-    @POST
+    @PostMapping
     @CacheEvict(key = "#user.username")
     public Response createUser(@Valid @UniqueAccount Account user) {
         return CommonResponse.op(() -> service.createAccount(user));
@@ -77,7 +80,7 @@ public class AccountResource {
     /**
      * 更新用户信息
      */
-    @PUT
+    @PutMapping
     @CacheEvict(key = "#user.username")
     @PreAuthorize("#oauth2.hasAnyScope('BROWSER')")
     public Response updateUser(@Valid @AuthenticatedAccount @NotConflictAccount Account user) {

@@ -11,9 +11,9 @@ import org.springframework.security.oauth2.common.util.JsonParser;
 import org.springframework.security.oauth2.common.util.JsonParserFactory;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import javax.inject.Named;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
@@ -27,7 +27,7 @@ import java.util.Map;
  * @author icyfenix@gmail.com
  * @date 2020/7/17 15:02
  **/
-@Named
+@Component
 @Primary
 public class RSA256JWTAccessToken extends JWTAccessToken {
 
@@ -46,6 +46,7 @@ public class RSA256JWTAccessToken extends JWTAccessToken {
     @Override
     protected String encode(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         Field signerField = ReflectionUtils.findField(this.getClass(), "signer");
+        assert signerField != null;
         signerField.setAccessible(true);
         Signer signer = (Signer) ReflectionUtils.getField(signerField, this);
 
@@ -57,6 +58,7 @@ public class RSA256JWTAccessToken extends JWTAccessToken {
         }
 
         Map<String, String> headers = Collections.singletonMap("kid", "bookstore-jwt-kid");
+        assert signer != null;
         return JwtHelper.encode(content, signer, headers).getEncoded();
     }
 }
