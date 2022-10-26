@@ -4,8 +4,6 @@ eureka:
       defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8761}/eureka/
 
 spring:
-  webflux:
-    static-path-pattern: /resources/**
   cloud:
     gateway:
       locators:
@@ -40,12 +38,7 @@ spring:
           predicates:
             - Path=/oauth/**
           uri: lb://security
-
-        - id: static-resources
-          predicates:
-            - Path=/**
-          uri: forward:/
-
+        
 server:
   port: ${PORT:8080}
 
